@@ -58,7 +58,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 포트 번호는 htons()로 네트워크 바이트 순서로 변환하여 설정한다.
     addr.sin_family = AF_INET;
     addr.sin_port = htons(8080);  // 포트를 8080으로 설정
-    addr.sin_addr.s_addr = inet_addr("127.0.0.1");   // IP 주소를 네트워크 바이트 순서로 변환
+     inet_pton(AF_INET, "127.0.0.1", &addr.sin_addr);  // IP 주소를 이진 형식으로 변환
 
     // 설정된 주소와 포트로 소켓을 바인딩한다.
     if (bind(s, (LPSOCKADDR)&addr, sizeof(addr)) == SOCKET_ERROR)
